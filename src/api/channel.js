@@ -1,7 +1,5 @@
 import http from "@/http/http"
-import {
-    rule
-} from "_postcss@7.0.21@postcss"
+
 /**
  * 封装频道栏中的api
  */
@@ -15,11 +13,7 @@ function getChannel() {
 /**
  * 获取新闻内容的方法 
  */
-function getNews({
-    channel_id,
-    timestamp,
-    with_top
-}) {
+function getNews({ channel_id,timestamp,with_top}) {
     return http({
         url: "/v1_1/articles",
         method: "get",
@@ -47,10 +41,7 @@ function allChannel() {
 /**
  * 添加和删除频道数据的方法 
  */
-function saveChannel({
-    channels
-}) {
-
+function saveChannel({channels}) {
     return http({
         url: "v1_0/user/channels",
         method: "put",
@@ -71,6 +62,8 @@ function hiddenArticel({artid}) {
         }
     })
 }
+
+//导出
 export {
     getChannel,
     getNews,

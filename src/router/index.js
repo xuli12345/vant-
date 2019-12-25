@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-let routes = [{
+let routes = [
+    {
         path: "/login",
         component: () => import("@/views/login.vue")
     },
     {
         path: "/",
         redirect: "/home"
-    }, {
+    },
+    {
         path: "/",
         component: () => import("@/components/tabBarLayout.vue"),
         children: [{
             path: "/home",
             component: () => import("@/views/home.vue")
-        },]
+        }, ]
     }
 ]
 const router = new VueRouter({

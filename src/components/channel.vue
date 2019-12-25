@@ -61,7 +61,8 @@
   </van-popup>
 </template>
 <script>
-import { allChannel, saveChannel } from "@/api/channel";
+import { allChannel } from "@/api/channel.js";
+import { saveChannel } from "@/api/channel";
 export default {
   props: ["value", "channelArr", "currentActive"],
   data() {
@@ -71,9 +72,7 @@ export default {
       allChannelList: [] //所有频道数据
     };
   },
-  //   mounted(){
-  //       this.cloneActive = this.currentActive
-  //   },
+
   async created() {
     let res = await allChannel();
     this.allChannelList = res.data.channels;
@@ -113,7 +112,7 @@ export default {
           };
         });
         //登录发请求保存到服务器(参数是对象)
-        let res = await saveChannel({
+     let res =await saveChannel({
           channels: channels
         });
       } else {
@@ -132,15 +131,15 @@ export default {
       this.channelArr.push(item);
       if (user && user.token) {
         //登录发请求保存到服务器(参数是对象)
-        let channels = this.channelArr.slice(1).map((item, index) => {
-          return {
-            id: item.id,
-            seq: index + 2
-          };
-        });
-        let res = await saveChannel({
-          channels: channels
-        });
+        // let channels = this.channelArr.slice(1).map((item, index) => {
+        //   return {
+        //     id: item.id,
+        //     seq: index + 2
+        //   };
+        // });
+        // let res = await saveChannel({
+        //   channels: channels
+        // });
       } else {
         window.localStorage.setItem("channel", JSON.stringify(this.channelArr));
       }
