@@ -11,6 +11,7 @@ const store = new Vuex.Store({
     },
     mutations: {
         setToken(state, token) {
+
             author.setAuthor(token) //这里要用author的方法保存到author.js中
             //讲数据保存到vuex中 
             state.token = token;

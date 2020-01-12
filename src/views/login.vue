@@ -76,8 +76,9 @@ export default {
               //setAuthor(res.data);
               //将获取的token用vuex的方法管理起来
               this.$store.commit("setToken",res.data);
-              //登录成功跳转的首页
-              this.$router.push("/home")
+              //登录成功跳转的首页 路径不能写死 从哪里来回哪去
+              // this.$router.push("/home")
+              this.$router.back();
             }
           } catch (err) {
             //使用vant toast 提示框提示

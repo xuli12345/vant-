@@ -131,15 +131,15 @@ export default {
       this.channelArr.push(item);
       if (user && user.token) {
         //登录发请求保存到服务器(参数是对象)
-        // let channels = this.channelArr.slice(1).map((item, index) => {
-        //   return {
-        //     id: item.id,
-        //     seq: index + 2
-        //   };
-        // });
-        // let res = await saveChannel({
-        //   channels: channels
-        // });
+        let channels = this.channelArr.slice(1).map((item, index) => {
+          return {
+            id: item.id,
+            seq: index + 2
+          };
+        });
+        let res = await saveChannel({
+          channels: channels
+        });
       } else {
         window.localStorage.setItem("channel", JSON.stringify(this.channelArr));
       }
@@ -148,15 +148,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.recommend {
-  margin-top: 20px;
-}
+// .recommend {
+//   margin-top: 20px;
+// }
 .channe-box {
   padding: 10px;
 }
 .channel {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   .myChannel {
     display: flex;
     align-items: center;

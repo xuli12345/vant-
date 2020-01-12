@@ -62,13 +62,37 @@ function hiddenArticel({artid}) {
         }
     })
 }
-
+/**
+ * 添加举报文章数据的方法 
+ */
+function reports ({artid,type,remark}){
+    return http({
+        url:"v1_0/article/reports",
+        method:'post',
+        data:{
+            target:artid,
+            type:type,
+            remark:remark
+        }
+    })
+}
+function blacklists({artid}){
+    return http({
+        url:"v1_0/user/blacklists",
+        method:"post",
+        data:{
+            target:artid
+        }
+    })
+}
 //导出
 export {
     getChannel,
     getNews,
     allChannel,
     saveChannel,
-    hiddenArticel
+    hiddenArticel,
+    reports,
+    blacklists
 
 }

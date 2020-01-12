@@ -17,6 +17,18 @@ let routes = [
             path: "/home",
             component: () => import("@/views/home.vue")
         }, ]
+    },
+    {
+        path:"/search",
+        component:()=>import("@/views/search.vue")
+    },
+    {
+        path:"/list/:key",
+        component:() =>import("@/views/list.vue")
+    },
+    {
+        path:"/articleDetail/:id",
+        component:() =>import("@/views/articleDetail.vue")
     }
 ]
 const router = new VueRouter({

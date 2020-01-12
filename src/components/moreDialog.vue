@@ -10,7 +10,7 @@
       <van-cell-group v-show="!isItem">
         <van-cell title="隐藏此信息" icon="location-o" @click="hiddenMsg" />
         <van-cell title="举报" icon="location-o" is-link @click="hiddenItem" />
-        <van-cell title="单拉黑" icon="location-o" />
+        <van-cell title="单拉黑" icon="location-o" @click="blacklists" />
       </van-cell-group>
       <van-cell-group v-show="isItem" @click="showItem">
         <van-cell icon="arrow-left" />
@@ -19,13 +19,14 @@
           v-for="(item, index) in itemList"
           :key="index"
           icon="location-o"
+          @click="reports(index)"
         />
       </van-cell-group>
     </van-dialog>
   </div>
 </template>
 <script>
-import { hiddenArticel } from "@/api/channel.js";
+import { hiddenArticel, reports,blacklists } from "@/api/channel.js";
 export default {
   props: ["value", "activeArtid"],
   data() {
@@ -61,6 +62,36 @@ export default {
         this.$toast.success("隐藏文章成功");
       } catch (error) {
         this.$toast.fail("隐藏文章失败");
+      } finally {
+        //隐藏面板
+        this.$emit("input", false);
+      }
+    },
+    //举报
+    async reports(index) {
+      try {
+        let res = await reports({
+          artid: this.activeArtid,
+          type: index,
+          remark: "就是想举报此文章"
+        });
+        this.$toast.success("举报文章成功");
+      } catch (error) {
+        this.$toast.fail("举报文章失败");
+      } finally {
+        //隐藏面板
+        this.$emit("input", false);
+      }
+    },
+    //拉黑
+    async blacklists() {
+      try {
+        let res = await blacklists({
+          artid: this.activeArtid
+        });
+        this.$toast.success("拉黑文章成功");
+      } catch (error) {
+        this.$toast.success("拉黑文章失败");
       } finally {
         //隐藏面板
         this.$emit("input", false);

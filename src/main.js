@@ -36,7 +36,14 @@ dayjs().from(dayjs('1990'))
 Vue.filter('formatTime', function(value) {
   return dayjs().from(dayjs(value))
 })
+// 时间过滤器
+Vue.filter('formatTimes', function(value) {
+  return dayjs(value).format("YYYY-MM-DD")
+})
 
+//使用自己封装的登录插件
+import loginPlugs from "@/utils/loginPlugs";
+Vue.use(loginPlugs);
 
 Vue.config.productionTip = false
 
